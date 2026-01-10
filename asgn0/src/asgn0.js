@@ -1,6 +1,13 @@
 // DrawRectangle.js
   let canvas, ctx;
 
+  function areaTriangle(v1, v2) {
+    let crossVector = Vector3.cross(v1, v2);
+    let magnitude = crossVector.magnitude();
+    let area = magnitude / 2;
+    return area;
+  }
+
   function angleBetween(v1, v2) {
     let dotProd = Vector3.dot(v1, v2);
     let v1Magnitude = v1.magnitude();
@@ -118,9 +125,7 @@
         console.log("Angle:", angle);
         break;
       case "area":
-        let crossVector = Vector3.cross(v1Copy, v2Copy);
-        let magnitude = crossVector.magnitude();
-        let area = magnitude / 2;
+        let area = areaTriangle(v1Copy, v2Copy);
         console.log("Area of the triangle:", area);
         break;
     }
