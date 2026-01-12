@@ -131,12 +131,12 @@ function click(ev) {
   g_shapesList.push(point);
 
   // Store the coordinates to g_points array
-  g_points.push([x, y]);
+  // g_points.push([x, y]);
   // Store the coordinates to g_points array
-  g_colors.push(g_selectedColor.slice());
+  // g_colors.push(g_selectedColor.slice());
 
   // Store the size to g_sizes
-  g_sizes.push(g_selectedSize);
+  // g_sizes.push(g_selectedSize);
 
   // if (x >= 0.0 && y >= 0.0) {      // First quadrant
   //   g_colors.push([1.0, 0.0, 0.0, 1.0]);  // Red
