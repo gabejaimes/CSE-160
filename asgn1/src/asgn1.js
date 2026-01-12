@@ -15,16 +15,27 @@ var FSHADER_SOURCE =
     gl_FragColor = u_FragColor;
   }`;
 
-function main() {
-  // Retrieve <canvas> element
-  var canvas = document.getElementById('webgl');
+// Global Vars
+let canvas;
+let gl;
+let a_Position;
+let u_FragColor;
 
-  // Get the rendering context for WebGL
-  var gl = getWebGLContext(canvas);
-  if (!gl) {
-    console.log('Failed to get the rendering context for WebGL');
-    return;
+function setupWebGL() {
+    // Retrieve <canvas> element
+    canvas = document.getElementById('webgl');
+  
+    // Get the rendering context for WebGL
+    gl = getWebGLContext(canvas);
+    if (!gl) {
+      console.log('Failed to get the rendering context for WebGL');
+      return;
+    }
   }
+
+function main() {
+
+  setupWebGL();
 
   // Initialize shaders
   if (!initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)) {
