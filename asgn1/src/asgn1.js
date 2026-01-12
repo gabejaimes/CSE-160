@@ -123,6 +123,13 @@ var g_shapesList = [];
 function click(ev) {
   const [x,y] = convertCoordinatesEventToGL(ev);
 
+  // Create and store the new point
+  let point = new Point();
+  point.position = [x,y];
+  point.color    = g_selectedColor.slice();
+  point.size     = g_selectedSize;
+  g_shapesList.push(point);
+
   // Store the coordinates to g_points array
   g_points.push([x, y]);
   // Store the coordinates to g_points array
@@ -150,18 +157,7 @@ function renderAllShapes() {
   var len = g_shapesList.length;
 
   for (var i = 0; i < len; i++) {
-    var xy = g_points[i];
-    var rgba = g_colors[i];
-    var size = g_sizes[i];
-
-    // Pass the position of a point to a_Position variable
-    gl.vertexAttrib3f(a_Position, xy[0], xy[1], 0.0);
-    // Pass the color of a point to u_FragColor variable
-    gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
-    // Pass size of a color to u_Size var
-    gl.uniform1f(u_Size, size);
-    // Draw
-    gl.drawArrays(gl.POINTS, 0, 1);
+    g_shapesList[i].render();
   }
 }
 
