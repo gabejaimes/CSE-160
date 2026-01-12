@@ -74,13 +74,7 @@ function main() {
 var g_points = [];  // The array for the position of a mouse press
 var g_colors = [];  // The array to store the color of a point
 function click(ev) {
-  var x = ev.clientX; // x coordinate of a mouse pointer
-  var y = ev.clientY; // y coordinate of a mouse pointer
-
-  var rect = ev.target.getBoundingClientRect();
-
-  x = ((x - rect.left) - canvas.width/2)/(canvas.width/2);
-  y = (canvas.height/2 - (y - rect.top))/(canvas.height/2);
+  const [x,y] = convertCoordinatesEventToGL(ev);
 
   // Store the coordinates to g_points array
   g_points.push([x, y]);
@@ -94,10 +88,14 @@ function click(ev) {
   }
 
   // Clear <canvas>
+  renderAllShapes();
+}
+
+function renderAllShapes() {
   gl.clear(gl.COLOR_BUFFER_BIT);
 
   var len = g_points.length;
-  for(var i = 0; i < len; i++) {
+  for (var i = 0; i < len; i++) {
     var xy = g_points[i];
     var rgba = g_colors[i];
 
@@ -108,4 +106,15 @@ function click(ev) {
     // Draw
     gl.drawArrays(gl.POINTS, 0, 1);
   }
+}
+
+function convertCoordinatesEventToGL(ev) {
+  var x = ev.clientX; // x coordinate of a mouse pointer
+  var y = ev.clientY; // y coordinate of a mouse pointer
+
+  var rect = ev.target.getBoundingClientRect();
+
+  x = ((x - rect.left) - canvas.width / 2) / (canvas.width / 2);
+  y = (canvas.height / 2 - (y - rect.top)) / (canvas.height / 2);
+  return ([x,y]);
 }
