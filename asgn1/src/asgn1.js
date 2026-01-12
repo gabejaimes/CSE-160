@@ -146,7 +146,9 @@ function click(ev) {
 function renderAllShapes() {
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  var len = g_points.length;
+  // var len = g_points.length;
+  var len = g_shapesList.length;
+
   for (var i = 0; i < len; i++) {
     var xy = g_points[i];
     var rgba = g_colors[i];
