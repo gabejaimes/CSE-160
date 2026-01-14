@@ -65,9 +65,14 @@ function connectVariablesToGLSL() {
     }
   }
 
+// Constants
+const POINT = 0;
+const TRIANGLE = 1;
+
 // Globals related to UI Elements
 let g_selectedColor = [1.0, 1.0, 1.0, 1.0];
 let g_selectedSize = 5;
+let g_selectedType = POINT;
 
 function addActionsForHtmlUI() {
   // get slider vars
@@ -85,6 +90,9 @@ function addActionsForHtmlUI() {
   document.getElementById("green").onclick = function() { g_selectedColor = [0.0, 1.0, 0.0, 1.0]; };
   document.getElementById("red").onclick =   function() { g_selectedColor = [1.0, 0.0, 0.0, 1.0]; };
   document.getElementById("clearButton").onclick = function() { g_shapesList = []; renderAllShapes();};
+
+  document.getElementById("pointButton").onclick = function() { g_selectedType = POINT; };
+  document.getElementById("triButton").onclick = function() { g_selectedType = TRIANGLE; };
 
   // Slider Events
   r.addEventListener("mouseup", updateColorFromSliders);
