@@ -72,8 +72,10 @@ const CIRCLE = 2;
 
 // Globals related to UI Elements
 let g_selectedColor = [1.0, 1.0, 1.0, 1.0];
-let g_selectedSize = 5;
+let g_selectedSize = 20;
 let g_selectedType = POINT;
+let g_selectedSegments = 3;
+
 
 function addActionsForHtmlUI() {
   // get slider vars
@@ -81,7 +83,7 @@ function addActionsForHtmlUI() {
   const g = document.getElementById("greenSlide");
   const b = document.getElementById("blueSlide");
   const sizeSlider = document.getElementById("sizeSlide");
-
+  const segmentsSlider = document.getElementById("segmentsSlide");
   // helper func for updating slider values and making them absolute
   function updateColorFromSliders() {
     g_selectedColor = [r.value / 100, g.value / 100, b.value / 100, 1.0];
@@ -101,6 +103,7 @@ function addActionsForHtmlUI() {
   g.addEventListener("mouseup", updateColorFromSliders);
   b.addEventListener("mouseup", updateColorFromSliders);
   sizeSlider.addEventListener("mouseup", function() { g_selectedSize = this.value; });
+  segmentsSlider.addEventListener("mouseup", function() { g_selectedSegments = this.value; });
 
   // USE ONLY IF NOT HARDCODED TO SYNC WHAT COLORS WERE INIT AS IN HTML
   // updateColorFromSliders();
@@ -149,6 +152,9 @@ function click(ev) {
   point.position = [x,y];
   point.color    = g_selectedColor.slice();
   point.size     = g_selectedSize;
+  if (g_selectedType === CIRCLE) {
+    point.segments = g_selectedSegments;
+  }
   g_shapesList.push(point);
 
 
