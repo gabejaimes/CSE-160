@@ -135,27 +135,18 @@ function click(ev) {
   const [x,y] = convertCoordinatesEventToGL(ev);
 
   // Create and store the new point
-  let point = new Point();
+  let point;
+  if (g_selectedType === POINT) {
+    point = new Point();
+  } else if (g_selectedType === TRIANGLE) {
+    point = new Triangle();
+  }
+
   point.position = [x,y];
   point.color    = g_selectedColor.slice();
   point.size     = g_selectedSize;
   g_shapesList.push(point);
 
-  // Store the coordinates to g_points array
-  // g_points.push([x, y]);
-  // Store the coordinates to g_points array
-  // g_colors.push(g_selectedColor.slice());
-
-  // Store the size to g_sizes
-  // g_sizes.push(g_selectedSize);
-
-  // if (x >= 0.0 && y >= 0.0) {      // First quadrant
-  //   g_colors.push([1.0, 0.0, 0.0, 1.0]);  // Red
-  // } else if (x < 0.0 && y < 0.0) { // Third quadrant
-  //   g_colors.push([0.0, 1.0, 0.0, 1.0]);  // Green
-  // } else {                         // Others
-  //   g_colors.push([1.0, 1.0, 1.0, 1.0]);  // White
-  // }
 
   // Draw every shape
   renderAllShapes();
