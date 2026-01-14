@@ -10,9 +10,14 @@ class Point {
     var xy = this.position;
     var rgba = this.color;
     var size = this.size;
-    // var xy = g_shapesList[i].position;
-    // var rgba = g_shapesList[i].color;
-    // var size = g_shapesList[i].size;
+    
+    // Stop using the buffer to send the attribute
+    // This is needed to avoid webgl from reading the previous buffer
+    // This tells webgl to not read a_Position from the buffer
+    gl.disableVertexAttribArray(a_Position);
+    
+
+
     // Pass the position of a point to a_Position variable
     gl.vertexAttrib3f(a_Position, xy[0], xy[1], 0.0);
     // Pass the color of a point to u_FragColor variable
