@@ -90,8 +90,8 @@ function addActionsForHtmlUI() {
   }
 
   // Button Events
-  document.getElementById("green").onclick = function() { g_selectedColor = [0.0, 1.0, 0.0, 1.0]; };
-  document.getElementById("red").onclick =   function() { g_selectedColor = [1.0, 0.0, 0.0, 1.0]; };
+  // document.getElementById("green").onclick = function() { g_selectedColor = [0.0, 1.0, 0.0, 1.0]; };
+  // document.getElementById("red").onclick =   function() { g_selectedColor = [1.0, 0.0, 0.0, 1.0]; };
   document.getElementById("clearButton").onclick = function() { g_shapesList = []; renderAllShapes();};
 
   document.getElementById("pointButton").onclick = function() { g_selectedType = POINT; };
