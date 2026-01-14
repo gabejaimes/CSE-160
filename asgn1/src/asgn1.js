@@ -74,7 +74,7 @@ const CIRCLE = 2;
 let g_selectedColor = [1.0, 1.0, 1.0, 1.0];
 let g_selectedSize = 20;
 let g_selectedType = POINT;
-let g_selectedSegments = 3;
+let g_selectedSegments = 8;
 
 
 function addActionsForHtmlUI() {
