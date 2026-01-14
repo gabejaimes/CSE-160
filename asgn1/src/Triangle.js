@@ -23,6 +23,29 @@ class Triangle{
     }
 }
 
+// Custom triangle that specifes vertices
+class CustomTriangle {
+    constructor() {
+        this.type = "customTriangle";
+        this.vertices = [[0.0,0.0], [0.0,1.0], [1.0,0.0]];
+        this.color = [1.0, 1.0, 1.0, 1.0];
+    }
+
+    render() {
+        var rgba = this.color;
+        // Flatten vertices
+        var v = this.vertices;
+        var flatVertices = v.flat();
+
+        // Pass color to u_FragColor
+        gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
+
+
+        // Draw the triangle
+        drawTriangle(flatVertices);
+    }
+}
+
 
 function drawTriangle(vertices) {
   var n = 3; // The number of vertices
