@@ -96,6 +96,7 @@ function addActionsForHtmlUI() {
   document.getElementById("drawFreddyButton").onclick = function() {
     g_shapesList = [];
     drawFreddy();
+    showFreddySketch();
   };
 
   document.getElementById("pointButton").onclick = function() { g_selectedType = POINT; };
@@ -487,4 +488,11 @@ function drawFreddy() {
   ];
   
   drawTriangleData(freddyData);
+}
+
+function showFreddySketch() {
+  const container = document.getElementById('freddySketchContainer');
+  const image = document.getElementById('freddySketch');
+  image.src = '../images/freddySketch.jpeg';
+  container.style.display = 'block';
 }
